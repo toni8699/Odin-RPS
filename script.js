@@ -4,6 +4,15 @@ let humanScore =0;
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random()*3);
+    if (choice === 0){
+        Computer.textContent = '✊';
+    }
+    if (choice === 1){
+        Computer.textContent='✌️';
+    }
+    if (choice === 2){
+        Computer.textContent='✋';
+    }
     return choices[choice];
 }
 let getHumanChoice = ()=>{
@@ -20,16 +29,16 @@ let getHumanChoice = ()=>{
 function playRound (computer,human){
     // if computer and human have the same choice, its a draw
     if (computer === human){
-        alert('DRAW');
+        //alert('DRAW');
     }else if ( (computer === 'ROCK' && human === 'PAPER') || (computer === 'PAPER' && human === 'SICSSORS') || 
         (computer === 'SICSSORS' && human === 'ROCK') ){
             // human wins
             humanScore++;
-            alert('You won !');
+            //alert('You won !');
         } else{
             // computer wins
             computerScore++;
-            alert('You lost !');
+            //alert('You lost !');
         }
     }
 
@@ -42,6 +51,9 @@ function playGame(){
     if (humanScore > computerScore){alert('You win !')}else{'You lost'};
 }
 const buttons = document.querySelectorAll('button');
+const Computer = document.createElement('span');
+const container = document.querySelector('.container');
+container.appendChild(Computer);
 
 console.log(buttons);
  const ROCK = buttons[0];
@@ -49,21 +61,21 @@ console.log(buttons);
  const SICSSORS =buttons[2];
 ROCK.addEventListener('click',()=>{
     const computerChoice = getComputerChoice();
-    alert('you played ROCK');
-    alert('computer played'+computerChoice);
+    // alert('you played ROCK');
+    // alert('computer played'+computerChoice);
     playRound(computerChoice,'PAPER');
 
 });
 PAPER.addEventListener('click',()=>{
     const computerChoice = getComputerChoice();
-    alert('You played PAPER');
-    alert('computer played'+computerChoice);
+    // alert('You played PAPER');
+    // alert('computer played'+computerChoice);
     playRound(computerChoice,'PAPER');
 });
 SICSSORS.addEventListener('click',()=>{
     const computerChoice = getComputerChoice();
-    alert('You played SICSSORS');
-    alert('computer played'+computerChoice);s
+    // alert('You played SICSSORS');
+    // alert('computer played'+computerChoice);s
     playRound(computerChoice,'SICSSORS');
 });
 
