@@ -32,13 +32,9 @@ function playRound (computer,human){
         //alert('DRAW');
     }else if ( (computer === 'ROCK' && human === 'PAPER') || (computer === 'PAPER' && human === 'SICSSORS') || 
         (computer === 'SICSSORS' && human === 'ROCK') ){
-            // human wins
             humanScore++;
-            //alert('You won !');
         } else{
-            // computer wins
             computerScore++;
-            //alert('You lost !');
         }
     }
 
