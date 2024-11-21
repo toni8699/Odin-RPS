@@ -4,10 +4,9 @@ let humanScore =0;
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random()*3);
-    return choice;
+    return choices[choice];
 }
 let getHumanChoice = ()=>{
-    let humanChoice =  prompt('Type your choice (rock,paper,sicssors) or (0,1,2):');
     humanChoice = humanChoice.toUpperCase();
     switch (humanChoice){
         case "0" : case "ROCK": return 0;
@@ -22,32 +21,49 @@ function playRound (computer,human){
     // if computer and human have the same choice, its a draw
     if (computer === human){
         alert('DRAW');
-    }else if ( (computer === 0 && human === 1) || (computer === 1 && human === 2) || 
-        (computer === 2 && human === 0) ){
+    }else if ( (computer === 'ROCK' && human === 'PAPER') || (computer === 'PAPER' && human === 'SICSSORS') || 
+        (computer === 'SICSSORS' && human === 'ROCK') ){
             // human wins
             humanScore++;
-            alert('You played '+choices[human]+' Computer played '+choices[computer]);
             alert('You won !');
         } else{
             // computer wins
             computerScore++;
-            alert('You played '+choices[human]+' Computer played '+choices[computer]);
             alert('You lost !');
         }
     }
 
-
 function playGame(){
-    let n = parseInt(prompt("How many rounds do you wanna play ?"));
-    for (let i =0; i<n;i++){
-        const humanChoice = getHumanChoice();
         const computerChoice= getComputerChoice();
-        playRound(computerChoice,humanChoice);
+        //playRound(computerChoice,humanChoice);
         console.log('Your score: '+humanScore);
         console.log('Computer score: '+computerScore);
-    }
     alert('Your score: '+humanScore+'Computer score: '+computerScore);
     if (humanScore > computerScore){alert('You win !')}else{'You lost'};
 }
+const buttons = document.querySelectorAll('button');
 
-playGame();
+console.log(buttons);
+ const ROCK = buttons[0];
+ const PAPER = buttons[1];
+ const SICSSORS =buttons[2];
+ROCK.addEventListener('click',()=>{
+    const computerChoice = getComputerChoice();
+    alert('you played ROCK');
+    alert('computer played'+computerChoice);
+    playRound(computerChoice,'PAPER');
+
+});
+PAPER.addEventListener('click',()=>{
+    const computerChoice = getComputerChoice();
+    alert('You played PAPER');
+    alert('computer played'+computerChoice);
+    playRound(computerChoice,'PAPER');
+});
+SICSSORS.addEventListener('click',()=>{
+    const computerChoice = getComputerChoice();
+    alert('You played SICSSORS');
+    alert('computer played'+computerChoice);s
+    playRound(computerChoice,'SICSSORS');
+});
+
